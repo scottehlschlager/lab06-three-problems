@@ -1,7 +1,6 @@
 ﻿
 
 
-using System.Runtime.CompilerServices;
 
 Random rng = new Random(4000);
 
@@ -113,4 +112,37 @@ System.Console.WriteLine($"You rolled {roll} times and won {timesWon}.");
 if (choice == 3 || choice == 4)
 {
     //Exercise 3
+    int[] scores = new int[5];
+
+    for (int i = 0; i < scores.Length; i++)
+    {
+        Console.Write($"Score {i + 1}: ");
+        scores[i] = Convert.ToInt32(Console.ReadLine());
+    }
+
+    int scoreTotal = 0;
+    int highestScore = 0;
+    int passingScore = 0;
+
+    foreach (int score in scores)
+    {
+        scoreTotal = scoreTotal + score;
+
+        highestScore = Math.Max(highestScore, score);
+
+        if (score >= 60)
+        {
+            passingScore++;
+        }
+    }
+
+    double scoreAverage = scoreTotal / Convert.ToDouble(scores.Length);
+
+    System.Console.WriteLine($"Scores entered: {scores.Length}");
+    System.Console.WriteLine($"Total: {scoreTotal}");
+    System.Console.WriteLine($"Average: {scoreAverage}");
+    System.Console.WriteLine($"Highest: {highestScore}");
+    System.Console.WriteLine($"Passing: {passingScore} of {scores.Length}");
+
+
 }
