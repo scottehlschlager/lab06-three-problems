@@ -1,6 +1,10 @@
 ﻿
 
 
+using System.Runtime.CompilerServices;
+
+Random rng = new Random(4000);
+
 System.Console.WriteLine("== CSCI 1250 Lab 06 ==");
 System.Console.WriteLine("1. The Grade Checker");
 System.Console.WriteLine("2. The Dice Table");
@@ -57,6 +61,53 @@ if (choice == 1 || choice == 4)
 if (choice == 2 || choice == 4)
 {
     //Exercise 2
+
+    int roll = 0;
+    char rollChoice;
+    int timesWon = 0;
+
+    System.Console.WriteLine("=== Exercise 2: The Dice Table ===");
+
+    do
+    {
+        rollChoice = 'y';
+
+        if (rollChoice != 'n')
+        {
+            int dice01 = rng.Next(1, 7);
+            int dice02 = rng.Next(1, 7);
+            int diceTotal = dice01 + dice02;
+            string diceMessage = "";
+
+            if (dice01 == 1 && dice02 == 1)
+            {
+                diceMessage = "Snake eyes.";
+            }
+            else if (dice01 == dice02 && dice01 != 1 && dice02 != 1)
+            {
+                diceMessage = "Doubles!";
+            }
+            else if (dice01 + dice02 == 7 || dice01 + dice02 == 11)
+            {
+                diceMessage = "A winner.";
+                timesWon++;
+            }
+            
+            
+
+            System.Console.WriteLine($"Roll {roll + 1}: {dice01} and {dice02}, total {diceTotal}. {diceMessage}");
+            Console.Write("Roll again? (y/n) ");
+            rollChoice = Convert.ToChar(Console.ReadLine());
+            
+            roll++;
+
+            //rollChoice = 'n';
+        }
+
+    }while(rollChoice != 'n');
+
+System.Console.WriteLine($"You rolled {roll} times and won {timesWon}.");
+
 }
 
 if (choice == 3 || choice == 4)
